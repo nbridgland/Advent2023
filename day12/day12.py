@@ -76,12 +76,7 @@ if __name__ == "__main__":
     tick = time.time()
     with open('input.txt') as f:
         records = [SpringCollection(line) for line in f.read().split('\n')]
-    output = 0
-    for record in records:
-        string = preprocess_string(record.springs)
-        groups = record.groups
-        output += process_string(string, groups)
-    print(f"Part 1: {output}")
+    print(f"Part 1: {sum([process_string(preprocess_string(record.springs), record.groups) for record in records])}")
     tock = time.time()
 
     print(tock - tick, '\n')
